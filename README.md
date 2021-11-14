@@ -27,5 +27,5 @@ So good luck and enjoy the result
 
 ![image](https://user-images.githubusercontent.com/74602408/141684297-275b4fa3-33b4-4d7e-a2d5-af3e0ae3ea5e.png)
 
-
+You can use my model with the following link here: https://drive.google.com/drive/folders/1iFvdBTWkNwh-umId8gAcvEcicwu2LrcJ?usp=sharing
 
