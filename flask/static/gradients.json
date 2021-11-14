@@ -1,0 +1,218 @@
+[
+  {
+    "name": "xanh_xanh_xanh",
+    "colors": [
+      "#46d832",
+      "#46d832",
+      "#46d832"
+    ]
+  },
+  {
+    "name": "xanh_xanh_vang",
+    "colors": [
+      "#46d832",
+      "#46d832",
+      "#f0dc45"
+    ]
+  },
+  {
+    "name": "xanh_xanh_do",
+    "colors": [
+      "#46d832",
+      "#46d832",
+      "#e43b3b"
+    ]
+  },
+  {
+    "name": "xanh_vang_xanh",
+    "colors": [
+      "#46d832",
+      "#f0dc45",
+      "#46d832"
+    ]
+  },
+  {
+    "name": "xanh_vang_vang",
+    "colors": [
+      "#46d832",
+      "#f0dc45",
+      "#f0dc45"
+    ]
+  },
+  {
+    "name": "xanh_vang_do",
+    "colors": [
+      "#46d832",
+      "#f0dc45",
+      "#e43b3b"
+    ]
+  },
+  {
+    "name": "xanh_do_xanh",
+    "colors": [
+      "#46d832",
+      "#e43b3b",
+      "#46d832"
+    ]
+  },
+  {
+    "name": "xanh_do_vang",
+    "colors": [
+      "#46d832",
+      "#e43b3b",
+      "#f0dc45"
+    ]
+  },
+  {
+    "name": "xanh_do_do",
+    "colors": [
+      "#46d832",
+      "#e43b3b",
+      "#e43b3b"
+    ]
+  },
+  {
+    "name": "vang_xanh_xanh",
+    "colors": [
+      "#f0dc45",
+      "#46d832",
+      "#46d832"
+    ]
+  },
+  {
+    "name": "vang_xanh_vang",
+    "colors": [
+      "#f0dc45",
+      "#46d832",
+      "#f0dc45"
+    ]
+  },
+  {
+    "name": "vang_xanh_do",
+    "colors": [
+      "#f0dc45",
+      "#46d832",
+      "#e43b3b"
+    ]
+  },
+  {
+    "name": "vang_vang_xanh",
+    "colors": [
+      "#f0dc45",
+      "#f0dc45",
+      "#46d832"
+    ]
+  },
+  {
+    "name": "vang_vang_vang",
+    "colors": [
+      "#f0dc45",
+      "#f0dc45",
+      "#f0dc45"
+    ]
+  },
+  {
+    "name": "vang_vang_do",
+    "colors": [
+      "#f0dc45",
+      "#f0dc45",
+      "#e43b3b"
+    ]
+  },
+  {
+    "name": "vang_do_xanh",
+    "colors": [
+      "#f0dc45",
+      "#e43b3b",
+      "#46d832"
+    ]
+  },
+  {
+    "name": "vang_do_vang",
+    "colors": [
+      "#f0dc45",
+      "#e43b3b",
+      "#f0dc45"
+    ]
+  },
+  {
+    "name": "vang_do_do",
+    "colors": [
+      "#f0dc45",
+      "#e43b3b",
+      "#e43b3b"
+    ]
+  },
+  {
+    "name": "do_xanh_xanh",
+    "colors": [
+      "#e43b3b",
+      "#46d832",
+      "#46d832"
+    ]
+  },
+  {
+    "name": "do_xanh_vang",
+    "colors": [
+      "#e43b3b",
+      "#46d832",
+      "#f0dc45"
+    ]
+  },
+  {
+    "name": "do_xanh_do",
+    "colors": [
+      "#e43b3b",
+      "#46d832",
+      "#e43b3b"
+    ]
+  },
+  {
+    "name": "do_vang_xanh",
+    "colors": [
+      "#e43b3b",
+      "#f0dc45",
+      "#46d832"
+    ]
+  },
+  {
+    "name": "do_vang_vang",
+    "colors": [
+      "#e43b3b",
+      "#f0dc45",
+      "#f0dc45"
+    ]
+  },
+  {
+    "name": "do_vang_do",
+    "colors": [
+      "#e43b3b",
+      "#f0dc45",
+      "#e43b3b"
+    ]
+  },
+  {
+    "name": "do_do_xanh",
+    "colors": [
+      "#e43b3b",
+      "#e43b3b",
+      "#46d832"
+    ]
+  },
+  {
+    "name": "do_do_vang",
+    "colors": [
+      "#e43b3b",
+      "#e43b3b",
+      "#f0dc45"
+    ]
+  },
+  {
+    "name": "do_do_do",
+    "colors": [
+      "#e43b3b",
+      "#e43b3b",
+      "#e43b3b"
+    ]
+  }
+]

@@ -1,0 +1,414 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="https://rawgit.com/kabachello/jQuery-Scanner-Detection/master/jquery.scannerdetection.js"></script>
+  <script src="js/belerise.js"></script>
+  <script src="js/ion.sound.min.js"></script>
+  <style>
+  body{
+    background: #9f9f9f;
+    margin: 0;
+  }
+  .video_gif{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .center-screen {
+  text-align: center;
+  max-height: 100vh;
+  overflow: auto;
+}
+.table_center{
+  margin:auto;
+  padding: 15px;
+  padding-top: 50px;
+border-radius: 15px;
+color: #000;
+font-weight: 700;
+font-size: 1.5rem;
+}
+
+.table_center td{
+  display: flex;
+  align-items: center;
+}
+
+.table_center td img{
+  margin-left: 10px;
+}
+
+.box_title{
+  margin-right: 15px;
+  width: 200px;
+}
+
+.checkmark {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  box-shadow: inset 0px 0px 0px #7ac142;
+  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: #7ac142;
+  fill: none;
+  animation: stroke .6s cubic-bezier(0.650, 0.000, 0.450, 1.000) forwards;
+}
+
+.checkmark__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke .3s cubic-bezier(0.650, 0.000, 0.450, 1.000) .8s forwards;
+}
+.result_done{
+  background: url('img/bg.jpg');
+  display: block;
+    position: absolute;
+    height: auto;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    margin-right: 35px;
+    margin-left: 35px;
+}
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes scale {
+  0%, 100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 30px #7ac142;
+  }
+}
+.pending{
+  background: #fff;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0;
+position: absolute;
+z-index: 999;
+}
+.pending span{
+  z-index: 9999;
+}
+.clock{
+  position: absolute;
+      width: 200px;
+      bottom: 15px;
+      left: 15px;
+      z-index: 99999;
+      background: #ffffff;
+      text-align: center;
+      margin: auto;
+      padding: 30px;
+      font-weight: 700;
+      border-radius: 15px;
+}
+#h {font-weight:400;
+    display: block;
+    font-size: 30px;
+    margin: 0 0 5px;
+    letter-spacing: 5px;
+    font-weight: 700;
+}
+  </style>
+</head>
+<body data="1">
+  <div id="video">
+    <center class="clock">
+      <script>var myVar=setInterval(function(){myTimer()},1000); function myTimer() {var d=new Date(); var t=d.toLocaleTimeString(); document.getElementById("h").innerHTML=t;}</script>
+  <span id="h"></span>
+  <script type="text/javascript">
+  n=new Date();if(n.getTimezoneOffset()==0)t=n.getTime()+(7*60*60*1000);else t=n.getTime();n.setTime(t);var dn=new Array("Chủ nhật","Thứ 2","Thứ 3","Thứ 4","Thứ 5","Thứ 6","Thứ 7");d=n.getDay();m=n.getMonth()+1;y=n.getFullYear()
+  document.write(dn[d]+", "+(n.getDate()<10?"0":"")+n.getDate()+"/"+(m<10?"0":"")+m+"/"+y)
+  </script></center>
+  <img class="video_gif" src="video3.gif"  loop=infinite>
+
+  </div>
+  <div class="center-screen">
+    <div class="pending" style="display: none;"><span id="error_text" style="position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%); font-size: 30px;font-weight: 700;">Đang xử lý dữ liệu, vui lòng chờ...</span></div>
+    <div class="result_done" style="display: none;" >
+    <table class="table_center">
+   <tbody>
+      <tr>
+         <td><span id="name">NaN ***</span> (<span id="phone">NaN</span>)</td>
+      </tr>
+      <tr>
+         <td>
+           <span class="box_title">Khai Báo Y Tế:</span><span id="health"><img id="health_xanh" width="35px" src="img/xanh.png"></span>
+         </td>
+      </tr>
+      <tr>
+         <td>
+           <span class="box_title">Tiêm chủng:</span><span id="injection"><img id="injection_xanh" width="35px" src="img/xanh.png"></span>
+         </td>
+      </tr>
+      <tr>
+         <td>
+           <span class="box_title">Xét nghiệm:</span><span id="covidTest"><img id="covidTest_xanh" width="35px" src="img/xanh.png"></span>
+         </td>
+      </tr>
+   </tbody>
+</table>
+<div style="clear: both;"></div>
+<div>
+<div id="timescan" style="font-size: 30px;font-weight: 700;color: #e50000;"></div>
+<img width="200px" id="img_status" src="img/open.png">
+<div id="result_text" style="font-size: 45px;"></div>
+</div>
+</div>
+ </div>
+
+  <script>
+    $(function() {
+      ion.sound({
+        sounds: [
+          {
+            name: "a",
+            preload: true
+
+          },
+          {
+            name: "b",
+            preload: true
+          },
+          {
+            name: "c",
+            preload: true
+          },
+          {
+            name: "d",
+            preload: true
+          },
+          {
+            name: "z",
+            preload: true
+          },
+          {
+            name: "error",
+            preload: true
+          }
+        ],
+
+        path: "sounds/",
+        preload: false,
+        multiplay: true,
+        volume: 0.9,
+
+        scope: this
+      });
+    });
+
+    $(document).scannerDetection({
+      timeBeforeScanTest: 600,
+      avgTimeByChar: 600,
+      onComplete: function(barcode, qty) {
+        console.log($(document.body).attr('data'));
+        if($(document.body).attr('data') == 0){
+          return false;
+        }
+        $('#timescan').html('');
+        $('#covidTest_xanh').attr('src', 'img/xanh.png');
+        $('#health_xanh').attr('src', 'img/xanh.png');
+        $('#injection_xanh').attr('src', 'img/xanh.png');
+
+        $('#video').hide();
+
+        ion.sound.stop();
+        var settings = {
+          "url": "api.php",
+          "method": "POST",
+          "dataType":"json",
+          "beforeSend": function (request) {
+          request.withCredentials = false;
+          $('.pending').show();
+          },
+          "timeout": 3000,
+          "error": function(xmlhttprequest, textstatus, message){
+            if(textstatus==="timeout") {
+            $('#error_text').html('Hệ thống quá tải, vui lòng thử lại!');
+
+            $('.pending').show();
+            var timeleft = 3;
+            var downTime = setInterval(function(){
+            if(timeleft <= 0){
+            $('.result_done').hide();
+            $('.pending').hide();
+            $('#video').show();
+            clearInterval(downTime);
+            }
+            timeleft -= 1;
+            }, 1000);
+
+            }
+          },
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "data": JSON.stringify({
+            "phoneOtp": "0353975141",
+            "qrCode": barcode
+          }),
+        };
+        $.ajaxSetup({
+         contentType: "application/json; charset=utf-8"
+         });
+        $('.checkmark').hide();
+        $.ajax(settings).done(function(response) {
+          $('.pending').hide();
+          if(response.status == -1){
+            //$('.center-screen').html('Lỗi hệ thống, vui lòng quét lại');
+            ion.sound.play("error");
+            $('#error_text').html('Có lỗi xảy ra vui lòng quét lại mã QR!');
+            $('.pending').show();
+            $('.result_done').hide();
+            setTimeout(function(){
+               location.reload();
+            }, 3000);
+          }
+          var id = window.setInterval(function() {}, 0);
+          var health = 'do';
+          var covidTest = 'do';
+          var injection = 'do';
+          if(response.data.health != 'Chưa khai báo y tế'){
+            health = 'xanh';
+            $('#health_xanh').attr('src', 'img/xanh_check.png');
+          }
+          if(response.data.covidTest != 'Chưa có thông tin'){
+            covidTest = 'xanh';
+            $('#covidTest_xanh').attr('src', 'img/xanh_check.png');
+          }
+          if(response.data.injection.indexOf('Đã tiêm 1 mũi') != -1){
+            injection = 'xanh';
+            $('#injection_xanh').attr('src', 'img/xanh_check.png');
+          }
+          if(response.data.injection.indexOf('Đã tiêm 2 mũi') != -1){
+            injection = 'xanh';
+            $('#injection_xanh').attr('src', 'img/xanh_check.png');
+          }
+          var bg_color = health+'_'+covidTest+'_'+injection;
+          while (id--) {
+          window.clearInterval(id);
+          }
+          var myVar=setInterval(function(){myTimer()},1000);
+          if(response.status != -1){
+            $('#name').html(response.data.name);
+            $('#phone').html(response.data.phone);
+        }else{
+
+        }
+          /*$('#name').html(response.data.name);
+          $('#phone').html(response.data.phone);
+          $('#health').html(response.data.health);
+          $('#injection').html(response.data.injection);
+          $('#covidTest').html(response.data.covidTest);*/
+          var bg = $('body');
+          if(response.data.certification.indexOf('(A+)') != -1){
+            ion.sound.play("a");
+            bg_color = "#00b930";
+            $('#img_status').attr('src', 'img/moivao2.png');
+            $("body").css({background: bg_color});
+            $('#result_text').css({color: "#46d832"});
+            $('#result_text').html('Quét mã thành công, xin mời qua!!');
+          }else if(response.data.certification.indexOf('(A)') != -1){
+            bg_color = "#00b930";
+            $('#img_status').attr('src', 'img/moivao2.png');
+            $("body").css({background: bg_color});
+            ion.sound.play("a");
+            $('#result_text').css({color: "#46d832"});
+            $('#result_text').html('Quét mã thành công, xin mời qua!!');
+          }else if(response.data.certification.indexOf('(B)') != -1){
+            bg_color = "#fff931";
+            $('#img_status').attr('src', 'img/moivao2.png');
+            $("body").css({background: bg_color});
+            ion.sound.play("b");
+            $('#result_text').css({color: "#f0dc45"});
+            $('#result_text').html('Quét mã thành công, xin mời qua!!');
+          }else if(response.data.certification.indexOf('(C)') != -1){
+            bg_color = "#ff0000";
+            $('#img_status').attr('src', 'img/canhbao.png');
+            $("body").css({background: bg_color});
+            ion.sound.play("c");
+            $('#result_text').css({color: "#f0dc45"});
+            $('#result_text').html('Quý khách không đáp ứng điều kiện y tế');
+          }else if(response.data.certification.indexOf('(D)') != -1){
+            bg_color = "#ff0000";
+            $('#img_status').attr('src', 'img/stop.png');
+            $("body").css({background: bg_color});
+            ion.sound.play("c");
+            $('#result_text').css({color: "#e43b3b"});
+            $('#result_text').html('Quý khách không đáp ứng điều kiện y tế');
+          }else if(response.data.certification.indexOf('(Z)') != -1){
+            bg_color = "#ff0000";
+            $('#img_status').attr('src', 'img/stop.png');
+            $("body").css({background: bg_color});
+            ion.sound.play("c");
+            $('#result_text').css({color: "#e43b3b"});
+            $('#result_text').html('Quý khách không đáp ứng điều kiện y tế');
+            $('.result_done').show();
+          }
+          $('#timescan').html('Thời gian '+response.data.timeScan);
+          $('.result_done').show();
+          $('body').attr('data', 0);
+        setTimeout(function(){
+           $('body').attr('data', 1);
+        }, 3000);
+
+        //var video = '<video frameborder="0" allowfullscreen autoplay loop muted><source src="video1.mp4" type="video/mp4"></video>';
+
+        var timeleft = 10;
+        var downTime = setInterval(function(){
+        if(timeleft <= 0){
+        //location.reload();
+        $('.result_done').hide();
+        $('#video').show();
+        $("body").css({background: ''});
+        clearInterval(downTime);
+        }
+        timeleft -= 1;
+        }, 1000);
+
+        });
+        //alert(barcode);
+      } // main callback function
+    });
+
+
+    $('#some-test-element').click(function() {
+      $('div#focus-here').focus();
+    })
+  </script>
+
+</body>
+
+</html>
