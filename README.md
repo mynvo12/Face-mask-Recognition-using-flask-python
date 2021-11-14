@@ -21,7 +21,7 @@ Run "python demo.py" to inference your result or my result model with webcam
 + The code for web inference in the folder: Flask
 Run "python app.py" to inference in your local host
 
-My model have a good accurracy: 0.9889 with 3 classes!!!!!
+My model have a good accuracy: 0.9889 with 3 classes!!!!!
 
 So good luck and enjoy the result 
 
