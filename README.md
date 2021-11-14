@@ -29,3 +29,7 @@ So good luck and enjoy the result
 
 You can use my model with the following link here: https://drive.google.com/drive/folders/1iFvdBTWkNwh-umId8gAcvEcicwu2LrcJ?usp=sharing
 
+Download my model and path to ModelResult/data/datasets 
+![image](https://user-images.githubusercontent.com/74602408/141685685-a2dcb758-d022-4d3b-bbad-e5563329e0af.png)
+
+
