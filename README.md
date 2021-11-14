@@ -1,4 +1,6 @@
 # Face-Mask-Recognition-web-app-with-Flask
+🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
+
  
 + This project is based on https://github.com/chandrikadeb7/Face-Mask-Detection , but with 3 classes(with_mask,without_mask,incorrect_mask)
 
@@ -6,8 +8,6 @@
 + Project is using Tensorflow, keras to train model with format HDF5, and use flask framework to show the real time Face Mask Recognition 
 
 + This project using Python 3.8.10 and GPU: GTX-1650TI with CUDA support: v11.2 and CUDNN: v8.1.1
-
-
 
 ![image](https://user-images.githubusercontent.com/74602408/141684105-ead6da98-6888-4fcf-849b-006f3cc334fa.png)
 
@@ -31,5 +31,5 @@ You can use my model with the following link here: https://drive.google.com/driv
 
 Download my model and path to ModelResult/data/datasets 
 ![image](https://user-images.githubusercontent.com/74602408/141685685-a2dcb758-d022-4d3b-bbad-e5563329e0af.png)
-
+Thanks  🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
