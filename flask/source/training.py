@@ -1,7 +1,7 @@
 import tensorflow.keras.applications.densenet
 from keras.layers.core import activation
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.layers import AveragePooling2D
+from tensorflow.keras.layers import MaxPooling2D
 from tensorflow.keras.layers import Dropout
 from tensorflow.keras.layers import Flatten
 from tensorflow.keras.layers import Dense
@@ -16,10 +16,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 import argparse
 import os
-from tensorflow.keras.applications.inception_v3 import InceptionV3
-from tensorflow.keras.applications.inception_v3 import preprocess_input
-gpus = tensorflow.config.experimental.list_physical_devices('GPU')
-tensorflow.config.experimental.set_memory_growth(gpus[0], True)
+from tensorflow.keras.applications.vgg16 import VGG16
+from tensorflow.keras.applications.vgg16 import preprocess_input
+config = tensorflow.compat.v1.ConfigProto()
+config.gpu_options.per_process_gpu_memory_fraction = 0.9
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--dataset", "-d",
@@ -44,13 +45,13 @@ if args.dataset == "datasets":
     class_names = ['with_mask', 'without_mask', 'incorrect_mask']
 
 learning_rate = 1e-4
-EPOCHS = 50
-BATCH_SIZE = 64
+EPOCHS = 40
+BATCH_SIZE = 70
 IMG_SIZE = 224
-dataset_path = "Put your Absolute Path here"
+dataset_path = "../data/datasets"
 
-model_save_path = "./ModelResult/data/datasets/model-pro-detect-mask6.h5"
-figure_save_path = "./figures/results-graph1.jpg"
+model_save_path = "../ModelResult/data/datasets/model-pro-detect-mask6.h5"
+figure_save_path = "../figures/results-graph1.jpg"
 
 print("Num of classes: " + str(NUM_CLASS))
 print("Classes: " + str(class_names))
@@ -74,8 +75,10 @@ train_generator = data_generator.flow_from_directory(
     dataset_path,
     target_size=(IMG_SIZE, IMG_SIZE),
     batch_size=BATCH_SIZE,
+    color_mode="rgb",
     class_mode="categorical",
     shuffle=True,
+    seed=42,
     subset='training')
 
 
@@ -83,38 +86,34 @@ validation_generator = data_generator.flow_from_directory(
     dataset_path,
     target_size=(IMG_SIZE, IMG_SIZE),
     batch_size=BATCH_SIZE,
+    color_mode="rgb",
     class_mode="categorical",
     shuffle=False,
+    seed=42,
     subset='validation')
 
 
-base_model = InceptionV3(weights="imagenet", include_top=False, input_tensor=Input(shape=(IMG_SIZE, IMG_SIZE, 3)))
+base_model = tensorflow.keras.applications.VGG16(weights="imagenet", include_top=False, input_tensor=Input(shape=(IMG_SIZE, IMG_SIZE, 3)))
 
+def layer_add(last_model, NUM_CLASS=3):
+    x = last_model
+    x = layers.MaxPooling2D(pool_size=(2, 2), padding='same')(x)
+    x = layers.Flatten()(x)
+    x = layers.Dense(128,activation='relu')(x)
+    x = layers.Dropout(0.5)(x)
+    x = layers.Dense(64, activation='relu')(x)
+    x = layers.Dropout(0.5)(x)
+    x = layers.Dense(NUM_CLASS, activation='softmax')(x)
+    return x
 
-flatten_layer = layers.Flatten(input_shape=(IMG_SIZE,IMG_SIZE))
-dense_layer1 = layers.Dense(256,activation='relu')
-dense_layer2 = layers.Dense(128,activation='relu')
-dense_layer3 = layers.Dense(64,activation='relu')
-dense_layer4 = layers.Dense(32,activation='relu')
-dropout = Dropout(0.5)
-predictions_layer = layers.Dense(NUM_CLASS, activation='softmax')
-model = models.Sequential([
-    base_model,
-    flatten_layer,
-    dense_layer1,
-    dense_layer2,
-    dense_layer3,
-    dense_layer4,
-    dropout,
-    predictions_layer
-])
-model.summary()
+last_model = base_model.output
 
 
 for layer in base_model.layers:
     layer.trainable = False
 
-
+model = Model(inputs=base_model.inputs, outputs=layer_add(last_model, NUM_CLASS))
+model.summary()
 print("[INFO] compiling model...")
 # model = load_model("./ModelResult/data/datasets/model-pro-detect-mask1.h5")
 # print("Load pretrained model..." + str(model))
@@ -122,20 +121,14 @@ opt = Adam(learning_rate=learning_rate)
 
 model.compile(loss="categorical_crossentropy", optimizer=opt, metrics=["accuracy"])
 
-
-
 early_stopping = EarlyStopping(
     monitor='val_accuracy',
     min_delta=0.0001,
     patience=3,
     verbose=1,
-    mode='max',
+    mode='auto',
     baseline=None,
     restore_best_weights=True)
-
-
-
-
 
 print("[INFO] training head...")
 # checkpoint_path = './ModelResult/data/datasets/model-pro-detect-mask1.h5'
