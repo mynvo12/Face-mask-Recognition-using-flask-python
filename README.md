@@ -6,7 +6,7 @@
 
 
 + Project is using Tensorflow, keras to train model with format HDF5, and use flask framework to show the real time Face Mask Recognition 
-
++ In this project, I'm using transfer learning to train model with pretrained-model is VGG-16 
 + This project using Python 3.8.10 and GPU: GTX-1650TI with CUDA support: v11.2 and CUDNN: v8.1.1
 
 ![image](https://user-images.githubusercontent.com/74602408/141684105-ead6da98-6888-4fcf-849b-006f3cc334fa.png)
