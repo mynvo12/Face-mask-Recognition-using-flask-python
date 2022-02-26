@@ -12,7 +12,9 @@
 ![image](https://user-images.githubusercontent.com/74602408/141684105-ead6da98-6888-4fcf-849b-006f3cc334fa.png)
 
 + So firstly, you have to download the project and then install requirement.txt 
- following this command line: pip install -r requirement.txt
+ following this command line: 
+ 
+ pip install -r requirement.txt
  
 + So the code training and demo in folder source: 
 Run "python Training.py" to train your own model with your own dataset
@@ -29,7 +31,7 @@ So good luck and enjoy the result
 
 You can use my model with the following link here: https://drive.google.com/drive/folders/1iFvdBTWkNwh-umId8gAcvEcicwu2LrcJ?usp=sharing
 
-Download my model and path to ModelResult/data/datasets 
+Download my pretrained-model and path to ModelResult/data/datasets 
 ![image](https://user-images.githubusercontent.com/74602408/141685685-a2dcb758-d022-4d3b-bbad-e5563329e0af.png)
 Thanks  🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 
